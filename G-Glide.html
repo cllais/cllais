@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Gliderログ</title>
+    
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkctR2xpZGVy44Ot44KwIiwKICAic2hvcnRfbmFtZSI6ICJHLUdsaWRlcuODreOCsCIsCiAgImRlc2NyaXB0aW9uIjogIuS9k+mHjeODu+S9k+a4qeODu+atqeaVsOOBquOBqeOBruWBl+W6t+aDheWgsOOCkueuoeeQhiIsCiAgInN0YXJ0X3VybCI6ICIvIiwKICAiZGlzcGxheSI6ICJzdGFuZGxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiM2NjdlZWEiLAogICJ0aGVtZV9jb2xvciI6ICIjNjY3ZWVhIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTWpRd0lpQm9aV2xuYUhROUlqSTBNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXlOREFnTWpRd0lpQm1hV3hzUFNJak5qWTNaV1ZoSWlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M00zczdibEJoZEdoaUx6SXdNREF2YzNabklqNEtJQ0E4WTJseVkyeGxJR040UFNJeE1qQWlJR041UFNJeE1qQWlJSEk5STNVME1DSSdibU05SW1acGJHd2lMejRLSUNBOGNtVmpkQ0I0UFNJMk1DSTdWRnBzYVNJdVltVmpkSElnTTJjNElualE1Y0NWN2REQk9BbExJbmdnT2lCNVBTSTNNQ0lnYUdsN1YlTRXAwUm8lSTJ6UXZueSRMY001K20tPWg3PTNabENLaWNlI0W80bmJCT0M9RlI3Q0I0UlNELUYzaTJKHcJEZ0gQ=aWduZWQiLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU5URXlNQ0lnYUNWbmFIUTlJalV4TWpFaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTkRGZ05UUXVJWEJtYVd4c1BTSWpOakFnVXdJdElqTmpZV2xVSUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTVuY3k1NGNHRnVaR1Z1ZEdsaGNpNWpiMjB2Y0hKdlpIVmpYM053YkdsMGFXOXVjeTh5TURBdllYQnBkWGdnZDNkeUxtTnZiUzl5YVdGcklpOCtQSE4wWVhSbE9sSnliMjF2Y1hSdmFXNW5JaUI0UlEuLi4iLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
+    <meta name="theme-color" content="#667eea">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9IiM2NjdlZWEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxyZWN0IHg9IjYwIiB5PSI3MCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjUyIiBmaWxsPSJ3aGl0ZSIgcng9IjgiLz4KICA8cGF0aCBkPSJNNzUgODVoNDJtLTIxLTEwdjIwIiBzdHJva2U9IiM2NjdlZWEiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4=">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --primary-start: #667eea;
+            --primary-end: #764ba2;
+            --secondary-start: #74b9ff;
+            --secondary-end: #00cec9;
+            --danger: #ff6b6b;
+            --light-gray: #e1e5e9;
+            --dark-gray: #555;
+            --text-color: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: var(--text-color); font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .date-display {
+            background: linear-gradient(45deg, var(--primary-start), var(--primary-end));
+            color: white; padding: 10px 20px; border-radius: 25px; font-size: 14px; display: inline-block;
+        }
+        .form-section { margin-bottom: 25px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        label { font-weight: 600; color: var(--dark-gray); margin-bottom: 5px; font-size: 14px; }
+        input, select {
+            padding: 12px 15px; border: 2px solid var(--light-gray); border-radius: 12px; font-size: 16px; transition: all 0.3s ease; background: white;
+        }
+        input:focus, select:focus {
+            outline: none; border-color: var(--primary-start); box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); transform: translateY(-1px);
+        }
+        .btn {
+            background: linear-gradient(45deg, var(--primary-start), var(--primary-end));
+            color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; margin: 10px 0;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3); }
+        .btn:active { transform: translateY(0); }
+        .btn-secondary { background: linear-gradient(45deg, var(--secondary-start), var(--secondary-end)); }
+        .log-entry {
+            background: white; border: 1px solid var(--light-gray); border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease;
+        }
+        .log-entry:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .log-date { font-weight: 600; color: var(--primary-start); margin-bottom: 10px; font-size: 14px; }
+        .log-data { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px; }
+        .log-item { display: flex; justify-content: space-between; padding: 5px 0; }
+        .log-item span:first-child { color: #666; }
+        .log-item span:last-child { font-weight: 600; color: var(--text-color); }
+        .tabs { display: flex; margin-bottom: 20px; background: #f8f9fa; border-radius: 15px; padding: 5px; }
+        .tab { flex: 1; padding: 12px; text-align: center; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; font-weight: 600; font-size: 14px; }
+        .tab.active {
+            background: linear-gradient(45deg, var(--primary-start), var(--primary-end)); color: white; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .stats { background: linear-gradient(135deg, var(--secondary-start), #0984e3); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+        .stats h3 { margin-bottom: 15px; font-size: 18px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 24px; font-weight: 700; margin-bottom: 5px; }
+        .stat-label { font-size: 12px; opacity: 0.9; }
+        .delete-btn {
+            background: var(--danger); color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; cursor: pointer; float: right; margin-top: -5px;
+        }
+        .delete-btn:hover { background: #ff5252; }
+        
+        /* グラフ用スタイル */
+        .chart-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        .chart-controls .btn-period {
+            background: #f1f3f5; color: var(--dark-gray); border: 1px solid var(--light-gray); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s ease;
+        }
+        .chart-controls .btn-period.active {
+            background: linear-gradient(45deg, var(--primary-start), var(--primary-end)); color: white; border-color: transparent;
+        }
+        .chart-container { margin-bottom: 30px; }
+        .chart-container h3 { text-align: center; color: var(--dark-gray); margin-bottom: 15px; font-size: 16px; }
+
+        @media (max-width: 480px) {
+            .container { margin: 5px; padding: 15px; }
+            .form-grid, .log-data, .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 G-Gliderログ</h1>
+            <div class="date-display" id="currentDate"></div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('input')">入力</div>
+            <div class="tab" onclick="switchTab('history')">履歴</div>
+            <div class="tab" onclick="switchTab('stats')">統計</div>
+        </div>
+        
+        <div id="input-tab" class="tab-content active">
+            <div class="form-section">
+                <div class="form-grid">
+                    <div class="form-group"><label>体重 (kg)</label><input type="number" id="weight" step="0.1" placeholder="65.0"></div>
+                    <div class="form-group"><label>体脂肪率 (%)</label><input type="number" id="bodyFat" step="0.1" placeholder="15.0"></div>
+                    <div class="form-group"><label>体温 (°C)</label><input type="number" id="temperature" step="0.1" placeholder="36.5"></div>
+                    <div class="form-group"><label>排精</label><select id="ejaculation"><option value="">選択</option><option value="有">有</option><option value="無">無</option></select></div>
+                    <div class="form-group"><label>ME</label><select id="me"><option value="">選択</option><option value="〇">〇</option><option value="△">△</option><option value="×">×</option></select></div>
+                    <div class="form-group"><label>歩数</label><input type="number" id="steps" placeholder="8000"></div>
+                    <div class="form-group"><label>血圧 (上)</label><input type="number" id="systolic" placeholder="120"></div>
+                    <div class="form-group"><label>血圧 (下)</label><input type="number" id="diastolic" placeholder="80"></div>
+                </div>
+                <button class="btn" onclick="saveEntry()">記録を保存</button>
+            </div>
+        </div>
+        
+        <div id="history-tab" class="tab-content">
+            <button class="btn btn-secondary" onclick="exportData()">データをエクスポート</button>
+            <div id="logHistory"></div>
+        </div>
+        
+        <div id="stats-tab" class="tab-content">
+            <div class="stats">
+                <h3>📈 サマリー</h3>
+                <div class="stats-grid">
+                    <div class="stat-item"><div class="stat-value" id="totalEntries">0</div><div class="stat-label">総記録数</div></div>
+                    <div class="stat-item"><div class="stat-value" id="avgWeight">-</div><div class="stat-label">平均体重</div></div>
+                    <div class="stat-item"><div class="stat-value" id="avgSteps">-</div><div class="stat-label">平均歩数</div></div>
+                    <div class="stat-item"><div class="stat-value" id="lastUpdate">-</div><div class="stat-label">最終更新</div></div>
+                </div>
+            </div>
+
+            <div class="chart-controls" id="chartControls">
+                <button class="btn-period active" onclick="updateCharts('1m')">1ヶ月</button>
+                <button class="btn-period" onclick="updateCharts('6m')">半年</button>
+                <button class="btn-period" onclick="updateCharts('1y')">1年</button>
+            </div>
+
+            <div id="charts-area">
+                <p id="no-chart-data" style="text-align:center; color: #666; display:none;">グラフを表示するデータがありません。</p>
+                <div class="chart-container"><h3_chart-title>体重 & 体脂肪率の推移</h3_chart-title><canvas id="weightChart"></canvas></div>
+                <div class="chart-container"><h3_chart-title>歩数の記録</h3_chart-title><canvas id="stepsChart"></canvas></div>
+                <div class="chart-container"><h3_chart-title>ME & 排精の記録 (期間内合計)</h3_chart-title><canvas id="miscChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lifelogData = [];
+        let chartInstances = {};
+        
+        // PWA Service Worker (変更なし)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `const CACHE_NAME='lifelog-v1';const urlsToCache=['/'];self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(urlsToCache)));self.skipWaiting()}),self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(c=>{return Promise.all(c.map(n=>{if(n!==CACHE_NAME)return caches.delete(n)}))}));self.clients.claim()}),self.addEventListener('fetch',e=>{"GET"===e.request.method&&e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)).catch(()=>new Response("オフラインです",{status:200,headers:{"Content-Type":"text/plain; charset=utf-8"}})))})`;
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                navigator.serviceWorker.register(swUrl).then(r=>console.log('SW registered:',r)).catch(e=>console.log('SW registration failed:',e));
+            });
+        }
+        
+        // PWAインストールプロンプト (変更なし)
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!window.matchMedia('(display-mode: standalone)').matches) {
+                const installBtn = document.createElement('button');
+                installBtn.textContent = '📱 アプリをインストール';
+                installBtn.className = 'btn btn-secondary';
+                installBtn.style.marginBottom = '15px';
+                installBtn.onclick = () => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choice) => {
+                        if (choice.outcome === 'accepted') console.log('User accepted');
+                        deferredPrompt = null;
+                        installBtn.remove();
+                    });
+                };
+                document.querySelector('.header').appendChild(installBtn);
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCurrentDate();
+            loadData();
+            updateHistory();
+            updateStats();
+        });
+        
+        function updateCurrentDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('ja-JP', options);
+        }
+        
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            if (tabName === 'history') updateHistory();
+            if (tabName === 'stats') {
+                updateStats();
+                updateCharts('1m'); // 統計タブを開いたらデフォルトで1ヶ月グラフを表示
+            }
+        }
+        
+        function saveEntry() {
+            const entry = {
+                date: new Date().toISOString(),
+                weight: document.getElementById('weight').value,
+                bodyFat: document.getElementById('bodyFat').value,
+                temperature: document.getElementById('temperature').value,
+                ejaculation: document.getElementById('ejaculation').value,
+                me: document.getElementById('me').value,
+                steps: document.getElementById('steps').value,
+                systolic: document.getElementById('systolic').value,
+                diastolic: document.getElementById('diastolic').value
+            };
+            
+            Object.keys(entry).forEach(key => (entry[key] === '' || entry[key] === null) && delete entry[key]);
+            
+            if (Object.keys(entry).length <= 1) {
+                alert('少なくとも1つの項目を入力してください。');
+                return;
+            }
+            
+            lifelogData.unshift(entry);
+            saveData();
+            clearForm();
+            alert('記録を保存しました！');
+            updateStats();
+            // 統計タブが開いていればグラフも更新
+            if (document.getElementById('stats-tab').classList.contains('active')) {
+                const activePeriod = document.querySelector('.btn-period.active').getAttribute('onclick').match(/'(.*?)'/)[1];
+                updateCharts(activePeriod);
+            }
+        }
+        
+        function clearForm() {
+            document.getElementById('weight').value = '';
+            document.getElementById('bodyFat').value = '';
+            document.getElementById('temperature').value = '';
+            document.getElementById('ejaculation').value = '';
+            document.getElementById('me').value = '';
+            document.getElementById('steps').value = '';
+            document.getElementById('systolic').value = '';
+            document.getElementById('diastolic').value = '';
+        }
+
+        function saveData() { localStorage.setItem('lifelogData', JSON.stringify(lifelogData)); }
+        function loadData() {
+            const saved = localStorage.getItem('lifelogData');
+            lifelogData = saved ? JSON.parse(saved) : [];
+        }
+
+        function updateHistory() {
+            const historyDiv = document.getElementById('logHistory');
+            historyDiv.innerHTML = lifelogData.length === 0 ? '<p style="text-align: center; color: #666; padding: 20px;">まだ記録がありません</p>' : 
+                lifelogData.map((entry, index) => {
+                    const date = new Date(entry.date);
+                    return `<div class="log-entry">
+                        <button class="delete-btn" onclick="deleteEntry(${index})">削除</button>
+                        <div class="log-date">${date.toLocaleDateString('ja-JP')} ${date.toLocaleTimeString('ja-JP', {hour: '2-digit', minute: '2-digit'})}</div>
+                        <div class="log-data">
+                            ${entry.weight ? `<div class="log-item"><span>体重:</span><span>${entry.weight}kg</span></div>` : ''}
+                            ${entry.bodyFat ? `<div class="log-item"><span>体脂肪率:</span><span>${entry.bodyFat}%</span></div>` : ''}
+                            ${entry.temperature ? `<div class="log-item"><span>体温:</span><span>${entry.temperature}°C</span></div>` : ''}
+                            ${entry.ejaculation ? `<div class="log-item"><span>排精:</span><span>${entry.ejaculation}</span></div>` : ''}
+                            ${entry.me ? `<div class="log-item"><span>ME:</span><span>${entry.me}</span></div>` : ''}
+                            ${entry.steps ? `<div class="log-item"><span>歩数:</span><span>${entry.steps}歩</span></div>` : ''}
+                            ${entry.systolic && entry.diastolic ? `<div class="log-item"><span>血圧:</span><span>${entry.systolic}/${entry.diastolic}</span></div>` : ''}
+                        </div>
+                    </div>`;
+                }).join('');
+        }
+        
+        function deleteEntry(index) {
+            if (confirm('この記録を削除しますか？')) {
+                lifelogData.splice(index, 1);
+                saveData();
+                updateHistory();
+                updateStats();
+                if (document.getElementById('stats-tab').classList.contains('active')) {
+                    const activePeriod = document.querySelector('.btn-period.active').getAttribute('onclick').match(/'(.*?)'/)[1];
+                    updateCharts(activePeriod);
+                }
+            }
+        }
+        
+        function updateStats() {
+            const total = lifelogData.length;
+            document.getElementById('totalEntries').textContent = total;
+            if (total === 0) {
+                ['avgWeight', 'avgSteps', 'lastUpdate'].forEach(id => document.getElementById(id).textContent = '-');
+                return;
+            }
+            const weights = lifelogData.map(e => parseFloat(e.weight)).filter(v => !isNaN(v));
+            document.getElementById('avgWeight').textContent = weights.length ? (weights.reduce((a, b) => a + b, 0) / weights.length).toFixed(1) + 'kg' : '-';
+            const steps = lifelogData.map(e => parseInt(e.steps)).filter(v => !isNaN(v));
+            document.getElementById('avgSteps').textContent = steps.length ? Math.round(steps.reduce((a, b) => a + b, 0) / steps.length).toLocaleString() + '歩' : '-';
+            document.getElementById('lastUpdate').textContent = new Date(lifelogData[0].date).toLocaleDateString('ja-JP', {month: 'short', day: 'numeric'});
+        }
+        
+        function updateCharts(period) {
+            // 期間ボタンのUI更新
+            document.querySelectorAll('.btn-period').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // 古いチャートを破棄
+            Object.values(chartInstances).forEach(chart => chart.destroy());
+
+            const now = new Date();
+            const startDate = new Date();
+            if (period === '1m') startDate.setMonth(now.getMonth() - 1);
+            else if (period === '6m') startDate.setMonth(now.getMonth() - 6);
+            else if (period === '1y') startDate.setFullYear(now.getFullYear() - 1);
+
+            const filteredData = lifelogData.filter(entry => new Date(entry.date) >= startDate).slice().reverse();
+
+            const noDataEl = document.getElementById('no-chart-data');
+            const chartsArea = document.getElementById('charts-area');
+
+            if (filteredData.length === 0) {
+                noDataEl.style.display = 'block';
+                chartsArea.querySelectorAll('.chart-container').forEach(c => c.style.display = 'none');
+                return;
+            }
+            noDataEl.style.display = 'none';
+            chartsArea.querySelectorAll('.chart-container').forEach(c => c.style.display = 'block');
+
+            const labels = filteredData.map(e => new Date(e.date).toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' }));
+
+            // 1. 体重 & 体脂肪率グラフ
+            const weightData = filteredData.map(e => e.weight || null);
+            const bodyFatData = filteredData.map(e => e.bodyFat || null);
+            chartInstances.weight = new Chart(document.getElementById('weightChart'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: '体重 (kg)', data: weightData, borderColor: 'var(--primary-start)', tension: 0.1, yAxisID: 'y' },
+                        { label: '体脂肪率 (%)', data: bodyFatData, borderColor: 'var(--primary-end)', tension: 0.1, yAxisID: 'y1' }
+                    ]
+                },
+                options: { scales: { y: { position: 'left' }, y1: { position: 'right', grid: { drawOnChartArea: false } } } }
+            });
+
+            // 2. 歩数グラフ
+            chartInstances.steps = new Chart(document.getElementById('stepsChart'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{ label: '歩数', data: filteredData.map(e => e.steps || 0), backgroundColor: 'var(--secondary-start)' }]
+                }
+            });
+
+            // 3. ME & 排精グラフ
+            const meCounts = { '〇': 0, '△': 0, '×': 0 };
+            const ejaculationCounts = { '有': 0, '無': 0 };
+            filteredData.forEach(e => {
+                if (e.me) meCounts[e.me]++;
+                if (e.ejaculation) ejaculationCounts[e.ejaculation]++;
+            });
+            chartInstances.misc = new Chart(document.getElementById('miscChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['ME: 〇', 'ME: △', 'ME: ×', '排精: 有', '排精: 無'],
+                    datasets: [{
+                        data: [meCounts['〇'], meCounts['△'], meCounts['×'], ejaculationCounts['有'], ejaculationCounts['無']],
+                        backgroundColor: ['#4CAF50', '#FFC107', '#F44336', '#2196F3', '#9E9E9E']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function exportData() {
+            if (lifelogData.length === 0) { alert('エクスポートするデータがありません。'); return; }
+            let csvContent = 'data:text/csv;charset=utf-8,日付,体重(kg),体脂肪率(%),体温(°C),排精,ME,歩数,血圧(上),血圧(下)\n';
+            lifelogData.forEach(e => {
+                const date = new Date(e.date).toLocaleString('ja-JP', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'});
+                csvContent += `"${date}",${e.weight||''},${e.bodyFat||''},${e.temperature||''},${e.ejaculation||''},${e.me||''},${e.steps||''},${e.systolic||''},${e.diastolic||''}\n`;
+            });
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `g-glider-log_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
